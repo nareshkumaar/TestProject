@@ -13,7 +13,8 @@ import com.test.dto.StudentDTO;
 public class ArrayListExample {
 
 	/* https://beginnersbook.com/2013/12/java-arraylist/ */
-
+	/* https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html*/
+	
 	public static void main(String[] args) {
 		listExample1();
 		listExample2();
@@ -22,6 +23,8 @@ public class ArrayListExample {
 		listExample5();
 		listExample6();
 		listExample7();
+		listExample8();
+		listExample9();
 	}
 
 	public static void listExample1() {
@@ -184,17 +187,54 @@ public class ArrayListExample {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void listExample7() {
-		 List<StudentDTO> arraylist = new ArrayList<StudentDTO>();
+		 ArrayList<StudentDTO> arraylist = new ArrayList<StudentDTO>();
 		   arraylist.add(new StudentDTO(223, "Chaitanya", 26));
 		   arraylist.add(new StudentDTO(245, "Rahul", 24));
 		   arraylist.add(new StudentDTO(209, "Ajeet", 32));
-		   
+
 		   Collections.sort(arraylist);
 
 		   for(StudentDTO str: arraylist){
 				System.out.println(str);
 		   }
 	}
+	
+	public static void listExample8() {
+		ArrayList<StudentDTO> arraylist = new ArrayList<StudentDTO>();
+		   arraylist.add(new StudentDTO(101, "Zues", 26));
+		   arraylist.add(new StudentDTO(505, "Abey", 24));
+		   arraylist.add(new StudentDTO(809, "Vignesh", 32));
 
+		   /*Sorting based on Student Name*/
+		   System.out.println("Student Name Sorting:");
+		   Collections.sort(arraylist, StudentDTO.StuNameComparator);
+		   
+		   for(StudentDTO str: arraylist){
+				System.out.println(str);
+		   }
+	}
+	
+	public static void listExample9() {
+		 ArrayList<String> al = new ArrayList<String>();
+
+	     //Addition of elements in ArrayList
+	     al.add("Steve");
+	     al.add("Justin");
+	     al.add("Ajeet");
+	     al.add("John");
+	     al.add("Arnold");
+	     al.add("Chaitanya");
+
+	     System.out.println("Original ArrayList Content: "+al);
+	     
+	     //Sublist to ArrayList
+	     ArrayList<String> al2 = new ArrayList<String>(al.subList(1, 4));
+	     System.out.println("SubList stored in ArrayList: "+al2);
+
+	     //Sublist to List
+	     List<String> list = al.subList(1, 4);
+	     System.out.println("SubList stored in List: "+list);
+	}
 }

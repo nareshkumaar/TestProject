@@ -1,6 +1,9 @@
 package com.test.dto;
 
-public class StudentDTO {
+import java.util.Comparator;
+
+
+public class StudentDTO implements Comparable{
 	private String studentname;
 	private int rollno;
 	private int studentage;
@@ -35,10 +38,13 @@ public class StudentDTO {
 		this.studentage = studentage;
 	}
 
-	public int compareTo(StudentDTO comparestu) {
-		int compareAge = ((StudentDTO) comparestu).getStudentage();
-		int compareAge1 = comparestu.getStudentage();
-		return this.studentage - compareAge;
+	public int compareTo(Object comparestu) {
+		int compareage = ((StudentDTO) comparestu).getStudentage();
+		/* For Ascending order */
+		return this.studentage - compareage;
+
+		/* For Descending order do like this */
+		// return compareage-this.studentage;
 	}
 
 	@Override
@@ -46,5 +52,22 @@ public class StudentDTO {
 		return "[ rollno=" + rollno + ", name=" + studentname + ", age="
 				+ studentage + "]";
 	}
+
+	 //Comparator for sorting the list by Student Name 
+	public static Comparator<StudentDTO> StuNameComparator = new Comparator<StudentDTO>() {
+
+		public int compare(StudentDTO s1, StudentDTO s2) {
+			String StudentName1 = s1.getStudentname().toUpperCase();
+			String StudentName2 = s2.getStudentname().toUpperCase();
+
+			// ascending order
+			return StudentName1.compareTo(StudentName2);
+
+			// descending order
+			// return StudentName2.compareTo(StudentName1);
+		}
+	};
+
+	
 
 }
